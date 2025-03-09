@@ -50,11 +50,8 @@ class _TodoScreenState extends State<TodoScreen> {
 
       try {
         print('Sending to-do: $_todoItem to $_selectedCategory for $_userName');
-        // TODO: implemente el llamado a _sendTodo aqui, hint:.
+        // TODO: implemente el llamado a _sendTodo aqui, ademas debe de mostrar el mensaje de que todo se guardo bien.
 
-        setState(() {
-          _message = 'Item sent successfully';
-        });
       } catch (e) {
         print('Error: $e');
         setState(() {
@@ -71,6 +68,7 @@ class _TodoScreenState extends State<TodoScreen> {
     required String category,
   }) async  {
     // TODO: implemente el llamado a dio aqui.
+    // Utilice el siguiente endpoint: https://firestore.googleapis.com/v1/projects/guitars-eae79/databases/(default)/documents/test
   }
 
   @override
