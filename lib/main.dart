@@ -37,19 +37,11 @@ class _TodoScreenState extends State<TodoScreen> {
   }
 
   Future<void> _loadUserName() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _userName = prefs.getString('userName') ?? '';
-      _nameController.text = _userName!;
-    });
+    // TODO: implemente la carga del nombre de usuario de las shared_preferences.
   }
 
   Future<void> _saveUserName(String name) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('userName', name);
-    setState(() {
-      _userName = name;
-    });
+    // TODO: implemente el guardado del nombre de usuario en las shared_preferences.
   }
 
   Future<void> _addTodo() async {
@@ -58,11 +50,7 @@ class _TodoScreenState extends State<TodoScreen> {
 
       try {
         print('Sending to-do: $_todoItem to $_selectedCategory for $_userName');
-        final response = await _sendTodo(
-          name: _userName!,
-          todo: _todoItem!,
-          category: _selectedCategory!,
-        );
+        // TODO: implemente el llamado a _sendTodo aqui, hint:.
 
         setState(() {
           _message = 'Item sent successfully';
@@ -82,20 +70,7 @@ class _TodoScreenState extends State<TodoScreen> {
     required String todo,
     required String category,
   }) async  {
-    Dio dio = Dio();
-    try {
-      final response = await dio.post(
-        'https://firestore.googleapis.com/v1/projects/guitars-eae79/databases/(default)/documents/test',
-        data: {'fields': {
-          'name': { 'stringValue': name},
-          'todo': {'stringValue': todo},
-          'category': {'stringValue': category},
-        }}
-      );
-      return response.data;
-    } catch (e) {
-      throw Exception('Failed to send to-do: $e');
-    }
+    // TODO: implemente el llamado a dio aqui.
   }
 
   @override
@@ -111,19 +86,13 @@ class _TodoScreenState extends State<TodoScreen> {
               TextFormField(
                 controller: _nameController,
                 decoration: const InputDecoration(labelText: 'Your Name'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your name';
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  _saveUserName(value);
-                },
+                // TODO: implemente validacion usando validator y guardado del nombre de usuario usando onChanged.
+                
               ),
               TextFormField(
                 controller: _todoController,
                 decoration: const InputDecoration(labelText: 'To-Do Item'),
+                // TODO: implemente validacion usando validator y guardado del to-do item usando onChanged.
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a to-do item';
@@ -152,7 +121,7 @@ class _TodoScreenState extends State<TodoScreen> {
                 child: const Text('Add To-Do'),
               ),
               const SizedBox(height: 16),
-              Text(_message),
+              // TODO: implemente la visualizacion del mensaje de estado.
             ],
           ),
         ),
